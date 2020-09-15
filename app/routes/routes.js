@@ -7,17 +7,12 @@ transactionRouter.get('/', async (request, response) => {
   try {
     if (!query.period) {
       throw new Error(
-        `É necessário informar o parâmetro "period", cujo valor deve estar no formato yyyy-mm`
+        `É necessário informar o parâmetro "period", cujo valor deve estar no formato yyyy-mm.`
       );
     }
-
-    const { period } = query;
-    dateHelpers.validatePeriod(period);
-    const filteredTransactions = await service.getTransactionsFrom(period);
-
     response.send({
-      length: filteredTransactions.length,
-      transactions: filteredTransactions,
+      length: 2,
+      transactions: ['transaction1', 'transaction2'],
     });
   } catch ({ message }) {
     console.log(message);
