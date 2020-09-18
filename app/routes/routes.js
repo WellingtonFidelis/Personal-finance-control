@@ -10,6 +10,15 @@ transactionRouter.get('/', async (request, response) => {
         `É necessário informar o parâmetro "period", cujo valor deve estar no formato yyyy-mm.`
       );
     }
+
+    const { period } = query;
+
+    if (period.length !== 7) {
+      throw new Error(
+        `Periodo inválido o parâmetro "period" deve estar no formato yyyy-mm.`
+      );
+    }
+
     response.send({
       length: 2,
       transactions: ['transaction1', 'transaction2'],
