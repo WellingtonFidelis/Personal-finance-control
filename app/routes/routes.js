@@ -1,5 +1,6 @@
 const express = require('express');
 const transactionRouter = express.Router();
+const service = require('../services/transactionService');
 
 transactionRouter.get('/', async (request, response) => {
   const { query } = request;
@@ -12,16 +13,20 @@ transactionRouter.get('/', async (request, response) => {
     }
 
     const { period } = query;
+    console.log(period);
+    console.log(period[0]);
 
-    if (period.length !== 7) {
+    if (period[0].length !== 7) {
       throw new Error(
         `Periodo inválido o parâmetro "period" deve estar no formato yyyy-mm.`
       );
     }
 
+    const filteredTransactions = await service.getTransactionsFrom(period[0]);
+
     response.send({
-      length: 2,
-      transactions: ['transaction1', 'transaction2'],
+      length: filteredTransactions.length,
+      transactions: filteredTransactions,
     });
   } catch ({ message }) {
     console.log(message);
@@ -42,6 +47,15 @@ transactionRouter.post('/', async (request, response) => {
     response.send({
       status: 'Ok',
     });
+  } catch ({ message }) {
+    console.log(message);
+    response.status(400).send({ error: message });
+  }
+});
+
+transactionRouter.put('/', async (request, response) => {
+  try {
+    throw new Error(`Periodo inexistente ou não informado.`);
   } catch ({ message }) {
     console.log(message);
     response.status(400).send({ error: message });
@@ -71,4 +85,27 @@ transactionRouter.put('/:id', async (request, response) => {
   }
 });
 
+transactionRouter.delete('/:id', async (request, response) => {
+  const { params } = request;
+
+  try {
+    // Mongo DB
+
+    response.send({
+      status: 'Ok',
+    });
+  } catch ({ message }) {
+    console.log(message);
+    response.status(400).send({ error: message });
+  }
+});
+
+transactionRouter.delete('/', async (request, response) => {
+  try {
+    throw new Error(`Periodo inexistente ou não informado.`);
+  } catch ({ message }) {
+    console.log(message);
+    response.status(400).send({ error: message });
+  }
+});
 module.exports = transactionRouter;
