@@ -43,9 +43,27 @@ transactionRouter.post('/', async (request, response) => {
     }
 
     // Mongo DB
+    const { description, value, category, year, month, day, type } = body;
+    const yearMonth = `${year}-${month.toString().padStart(2, '0')}`;
+    const yearMonthDay = `${yearMonth}-${day.toString().padStart(2, '0')}`;
+
+    const postTransaction = {
+      description,
+      value,
+      category,
+      year,
+      month,
+      day,
+      yearMonth,
+      yearMonthDay,
+      type,
+    };
+
+    const newTransaction = await service.postTransaction(postTransaction);
 
     response.send({
       status: 'Ok',
+      transaction: newTransaction,
     });
   } catch ({ message }) {
     console.log(message);
@@ -75,9 +93,31 @@ transactionRouter.put('/:id', async (request, response) => {
     }
 
     // Mongo DB
+    const { description, value, category, year, month, day, type } = body;
+    const { id } = params;
+    const yearMonth = `${year}-${month.toString().padStart(2, '0')}`;
+    const yearMonthDay = `${yearMonth}-${day.toString().padStart(2, '0')}`;
+
+    const updateTransaction = {
+      description,
+      value,
+      category,
+      year,
+      month,
+      day,
+      yearMonth,
+      yearMonthDay,
+      type,
+    };
+
+    const updatedTransaction = await service.updateTransaction(
+      id,
+      updateTransaction
+    );
 
     response.send({
       status: 'Ok',
+      transaction: updatedTransaction,
     });
   } catch ({ message }) {
     console.log(message);

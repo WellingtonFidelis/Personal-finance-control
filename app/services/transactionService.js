@@ -12,4 +12,14 @@ async function getTransactionsFrom(period) {
   return transactions;
 }
 
-module.exports = { getTransactionsFrom };
+async function postTransaction(transaction) {
+  const newTransactionMongoDB = await TransactionModel.create(transaction);
+  return newTransactionMongoDB;
+}
+
+async function updateTransaction(_id, transaction) {
+  await TransactionModel.updateOne({ _id: ObjectId(_id) }, transaction);
+  return { _id, ...transaction };
+}
+
+module.exports = { getTransactionsFrom, postTransaction, updateTransaction };
