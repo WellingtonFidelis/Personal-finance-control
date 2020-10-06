@@ -22,4 +22,14 @@ async function updateTransaction(_id, transaction) {
   return { _id, ...transaction };
 }
 
-module.exports = { getTransactionsFrom, postTransaction, updateTransaction };
+async function deleteTransaction(_id) {
+  const result = await TransactionModel.deleteOne({ _id: ObjectId(_id) });
+  return result.deletedCount === 1;
+}
+
+module.exports = {
+  getTransactionsFrom,
+  postTransaction,
+  updateTransaction,
+  deleteTransaction,
+};
