@@ -13,14 +13,14 @@ transactionRouter.get('/', async (request, response) => {
     }
 
     const { period } = query;
-
-    if (period[0].length !== 7) {
+    // se colocar period[0] o test do json no Boomerango pega, se tirar o json é retornado no front-end
+    if (period.length !== 7) {
       throw new Error(
         `Periodo inválido o parâmetro "period" deve estar no formato yyyy-mm.`
       );
     }
 
-    const filteredTransactions = await service.getTransactionsFrom(period[0]);
+    const filteredTransactions = await service.getTransactionsFrom(period);
 
     response.send({
       length: filteredTransactions.length,

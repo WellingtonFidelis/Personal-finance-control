@@ -10,10 +10,11 @@ export default function App() {
   React.useEffect(() => {
     const fetchTransactions = async () => {
       // const axiosObject = await api.get('/transaction?period=2019-07');
-      const { data } = await api.get('/transaction?period=2019-02');
-      console.log(data);
+      const { data } = await api.get('/transaction?period=2019-01');
+      console.log(data.transactions);
 
       setTransactions(data.transactions);
+
     }
 
     fetchTransactions();
@@ -24,7 +25,7 @@ export default function App() {
       <h1 className="center">Final Challenge - Bootcamp Full Stack</h1>
       {
         transactions.map((transaction) => {
-          return <p key={transaction}>{transaction}</p>;
+          return <p key={transaction._id}>{transaction.description}</p>;
         })
       }
     </div>
