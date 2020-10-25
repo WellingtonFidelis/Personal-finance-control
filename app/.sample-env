@@ -1,0 +1,1 @@
+DB_CONNECTION='mongodb+srv://root: <PASSWORD> @db-test.d2yw0.mongodb.net/ <DBNAME> ?retryWrites=true&w=majority'
