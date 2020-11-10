@@ -2,6 +2,23 @@ const express = require('express');
 const transactionRouter = express.Router();
 const service = require('../services/transactionService');
 
+transactionRouter.get('/periods', async (request, response) => {
+  try {
+    const allPeriods = await service.getAllPeriods();
+
+    response.send({
+      status: 'OK',
+      length: allPeriods.length,
+      transactions: allPeriods,
+    });
+  } catch (message) {
+    response.status(400).send({
+      status: 'FAIL',
+      error: message,
+    });
+  }
+});
+
 transactionRouter.get('/', async (request, response) => {
   const { query } = request;
 
@@ -148,4 +165,5 @@ transactionRouter.delete('/', async (request, response) => {
     response.status(400).send({ error: message });
   }
 });
+
 module.exports = transactionRouter;

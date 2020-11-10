@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Container, Form, Row, Col } from 'react-bootstrap';
+// import { Container, Form, Row, Col } from 'react-bootstrap';
 
 import './index.css';
 
@@ -8,17 +8,24 @@ const api = axios.create({ baseURL: 'api' });
 
 export default function App() {
   const [transactions, setTransactions] = React.useState([]);
+  const [periods, setPeriods] = React.useState([]);
 
   React.useEffect(() => {
     const fetchTransactions = async () => {
       // const axiosObject = await api.get('/transaction?period=2019-07');
       const { data } = await api.get('/transaction?period=2019-01');
-      console.log(data.transactions);
-
+      // console.log(data.transactions);
       setTransactions(data.transactions);
     };
 
+    const fetchPeriods = async () => {
+      const { data } = await api.get('/transaction/periods');
+      setPeriods(data.transactions);
+      // console.log(data.transactions);
+    };
+
     fetchTransactions();
+    fetchPeriods();
   }, []);
   // array of dependecies not full will be once executed.
   /* trocar o bootstrap por html basic e usar styled Components */
@@ -42,13 +49,13 @@ export default function App() {
         <form>
           <div className="row">
             <div className="col"></div>
-              <div className="col col-md-4 col-xs-12">
+            <div className="col col-md-4 col-xs-12">
               <div className="form-group">
                 <select className="form-control">
-                  {transactions.map((transaction) => {
+                  {periods.map((period) => {
                     return (
-                      <option className="option-text" key={transaction._id}>
-                        {transaction.yearMonth}
+                      <option className="option-text" key={period}>
+                        {period}
                       </option>
                     );
                   })}

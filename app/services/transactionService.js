@@ -7,6 +7,11 @@ const ObjectId = mongoose.Types.ObjectId;
 // descobrir esse erro :-/
 const TransactionModel = require('../models/TransactionModel');
 
+async function getAllPeriods() {
+  const allPeriods = await TransactionModel.find({}).distinct('yearMonth');
+  return allPeriods;
+}
+
 async function getTransactionsFrom(period) {
   const transactions = await TransactionModel.find({ yearMonth: period });
   return transactions;
@@ -28,6 +33,7 @@ async function deleteTransaction(_id) {
 }
 
 module.exports = {
+  getAllPeriods,
   getTransactionsFrom,
   postTransaction,
   updateTransaction,

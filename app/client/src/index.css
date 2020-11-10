@@ -27,7 +27,7 @@ body .container section#section-financial {
   border: 2px solid;
   border-radius: 10px;
 
-  background: rgba(204, 199, 199, 0.712);
+  background: rgb(255, 255, 255);
 }
 
 code {
