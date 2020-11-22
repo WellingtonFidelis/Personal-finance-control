@@ -112,7 +112,7 @@ export default function App() {
     <>
       <header>
         <div className="navbar-fixed">
-          <nav className="teal">
+          <nav className="nav">
             <div className="navbar-home">
               <div className="content-header">
                 <strong className="font-xlarge">
