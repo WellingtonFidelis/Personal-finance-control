@@ -21,10 +21,6 @@
   <a href="#-license">License</a>
 </p>
 
-<p align="center">
-  <img alt="Personal-finance-control" src="https://github.com/WellingtonFidelis/Personal-finance-control/blob/master/portifolio/template_git.png?raw=true" width="100%">
-</p>
-
 ## 🧸 About the project
 
 Projeto idealizado para o bootcamp [bootcamp online - desenvolvedor fullstack](https://www.igti.com.br/custom/bootcamp-desenvolvedor-full-stack/), com um desafio final em que tinhamos que desenvolver uma aplicação web para Controle Financeiro Pessoal, utilizando as tecnologias NodeJs e Express para a criação de API, MongoDB e Mongoose para persistir os dados, React no frontend consumindo a API desenvolvida, e publicar a solução no Heroku.
@@ -40,7 +36,7 @@ Projeto idealizado para o bootcamp [bootcamp online - desenvolvedor fullstack](h
 
 ## 📷 App
 
-![](https://ik.imagekit.io/0hmjtnwyvn/bootcamp-igti/app-finapp_bq8S1njs5.gif)
+![](https://github.com/WellingtonFidelis/Personal-finance-control/blob/master/portifolio/gif-personal-app.gif)
 
 
 ## How you can use
@@ -107,3 +103,7 @@ $ yarn start
 
 - Linkedin: [@wellington-fidelis](https://www.linkedin.com/in/wellington-fidelis-7b02b167/)
 - Github: [@wellington-fidelis](https://github.com/WellingtonFidelis)
+
+## Previous version
+**Version 1.0**
+![](https://github.com/WellingtonFidelis/Personal-finance-control/blob/master/portifolio/screenshot_app_1.0.png)
